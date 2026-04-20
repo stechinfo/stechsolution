@@ -1,0 +1,600 @@
+Voici un code HTML/CSS/JS professionnel pour le site vitrine de **STECH SOLUTION**. Il intègre un design moderne, un fond attractif, toutes vos prestations, vos contacts et un logo stylisé.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>STECH SOLUTION - Expert en maintenance informatique & réseaux</title>
+    <!-- Font Awesome 6 (gratuit, icônes pro) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins + Inter pour un look moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 30%, #0b1120, #030617);
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* fond animé avec particules subtiles style tech */
+        .bg-animate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 40% 50%, rgba(0, 255, 255, 0.05), transparent 70%);
+        }
+
+        .bg-animate::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.1"><path fill="none" stroke="%2300ffff" stroke-width="1.5" d="M100 200 L700 200 M100 400 L700 400 M100 600 L700 600 M200 100 L200 700 M400 100 L400 700 M600 100 L600 700" stroke-dasharray="4 8"/><circle cx="400" cy="400" r="150" stroke="%2344aaff" fill="none" stroke-width="1.2"/><circle cx="400" cy="400" r="250" stroke="%2344aaff" fill="none" stroke-width="0.8"/></svg>');
+            background-repeat: repeat;
+            animation: moveGrid 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0,0);}
+            100% { transform: translate(100px,100px);}
+        }
+
+        /* header glassmorphisme */
+        .glass-header {
+            background: rgba(15, 25, 45, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0.8rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            width: 55px;
+            height: 55px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(0,114,255,0.5);
+        }
+
+        .logo-icon i {
+            font-size: 2.2rem;
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(130deg, #FFFFFF, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-text p {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #a0c4ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #e2e8ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff;
+        }
+
+        .contact-fast {
+            display: flex;
+            gap: 12px;
+        }
+        .contact-fast a {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid rgba(0,255,255,0.4);
+        }
+        .contact-fast a i {
+            margin-right: 6px;
+        }
+        .contact-fast a:hover {
+            background: #00ccff;
+            color: #030617;
+            border-color: white;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 4rem 5% 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text .badge {
+            background: #00aaff20;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            border-left: 3px solid #0ff;
+            margin-bottom: 20px;
+        }
+        .hero-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(to right, #fff, #80e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-text p {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #cbd5ff;
+            max-width: 550px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #0072ff, #00c6ff);
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 14px -6px #0072ff80;
+        }
+        .btn-outline {
+            border: 1.5px solid #0ff;
+            background: transparent;
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: #0ff;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #0ff22a;
+            color: #030617;
+        }
+        .hero-stats {
+            flex: 0.8;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(0,255,255,0.2);
+        }
+        .hero-stats i {
+            font-size: 2rem;
+            color: #0ff;
+        }
+
+        /* section services */
+        .section {
+            padding: 4rem 5%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .section-title span {
+            background: linear-gradient(135deg, #aaffff, #4d9eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .service-card {
+            background: rgba(12, 20, 35, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #0ff;
+            box-shadow: 0 15px 30px -12px #00ccff30;
+        }
+        .service-icon {
+            font-size: 2.3rem;
+            background: linear-gradient(145deg, #00ccff, #0077ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: #b9c8ff;
+        }
+
+        /* zone pour les prestations multiples style liste */
+        .list-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .badge-item {
+            background: #0a1022;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            border-left: 2px solid #0ff;
+        }
+
+        /* contact + carte */
+        .contact-block {
+            background: linear-gradient(145deg, #071126, #010514);
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin-top: 1rem;
+            border: 1px solid #2c3f6e;
+        }
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .contact-detail i {
+            width: 45px;
+            height: 45px;
+            background: #0ff1a0;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #1f3a6b;
+            color: #0ff;
+            font-size: 1.3rem;
+        }
+        .map-placeholder {
+            flex: 1;
+            background: #0e1a2a;
+            border-radius: 32px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0,255,255,0.2);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 780px) {
+            .glass-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px #00000050;
+            z-index: 99;
+            transition: 0.2s;
+        }
+        .whatsapp-float a {
+            color: white;
+            font-size: 2rem;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.07);
+            background: #20b859;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-animate"></div>
+
+<header class="glass-header">
+    <div class="logo-container">
+        <div class="logo-icon">
+            <i class="fas fa-microchip"></i>
+        </div>
+        <div class="logo-text">
+            <h1>STECH SOLUTION</h1>
+            <p>INNOVATION & MAINTENANCE</p>
+        </div>
+    </div>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#prestations">Expertises</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="contact-fast">
+        <a href="tel:+22893778173"><i class="fas fa-phone-alt"></i> Appel</a>
+        <a href="https://wa.me/22893778173" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+</header>
+
+<main>
+    <div class="hero">
+        <div class="hero-text">
+            <div class="badge"><i class="fas fa-wrench"></i> Technicien certifié · 7j/7</div>
+            <h2>Maintenance informatique, réseaux & solutions high-tech</h2>
+            <p>Installation antenne parabolique, caméras de surveillance, WiFi zone, réparation téléphone et ordinateur. Dépannage rapide et professionnel.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn-primary"><i class="fas fa-headset"></i> Demander un devis</a>
+                <a href="tel:+22879636443" class="btn-outline"><i class="fas fa-mobile-alt"></i> +228 79 63 64 43</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <i class="fas fa-laptop-code"></i>
+            <h3 style="margin: 10px 0;">Solutions 360°</h3>
+            <p>✔️ Dépannage express <br> ✔️ Matériel & logiciels<br> ✔️ Assistance à domicile / entreprise</p>
+        </div>
+    </div>
+
+    <!-- Section Services globaux -->
+    <div id="services" class="section">
+        <div class="section-title"><span>Nos prestations techniques</span> <i class="fas fa-cogs"></i></div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-desktop"></i></div>
+                <h3>Maintenance & dépannage PC</h3>
+                <p>Réparation ordinateurs, suppression mot de passe, optimisation, changement composants.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-wifi"></i></div>
+                <h3>Réseaux & WiFi zone</h3>
+                <p>Installation de bornes WiFi, sécurisation réseau, câblage et configuration avancée.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-satellite-dish"></i></div>
+                <h3>Antennes paraboliques</h3>
+                <p>Installation, réglage et calibration parabolique pour recevoir chaînes TV (Canal+, Free etc.)</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-video"></i></div>
+                <h3>Caméras de surveillance</h3>
+                <p>Installation de systèmes CCTV, caméras IP, enregistreurs, accès mobile.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Réparation téléphone & Android</h3>
+                <p>Changement écran, batterie, connectique, panne logicielle, déblocage.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-sd-card"></i></div>
+                <h3>Clés USB / Cartes mémoire</h3>
+                <p>Récupération de données, réparation support endommagé, formatage.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section détails logiciels + vente matériel -->
+    <div id="prestations" class="section" style="padding-top: 0;">
+        <div class="section-title"><span>Logiciels & Systèmes d'exploitation</span></div>
+        <div class="services-grid" style="margin-bottom: 2rem;">
+            <div class="service-card">
+                <i class="fab fa-windows service-icon"></i>
+                <h3>Installation OS</h3>
+                <div class="list-badge">
+                    <span class="badge-item">Windows 8</span><span class="badge-item">Windows 10</span><span class="badge-item">Windows 11</span><span class="badge-item">Windows 12</span>
+                    <span class="badge-item">Kali Linux</span><span class="badge-item">Ubuntu</span><span class="badge-item">Dual Boot</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-excel service-icon"></i>
+                <h3>Microsoft Office & Activation</h3>
+                <p>Installation complète (Word, Excel, PPT, Outlook). Activation officielle / résolution erreurs.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-key service-icon"></i>
+                <h3>Activation Windows & Office</h3>
+                <p>Activation licence Windows 10/11/Pro, Office 2019/2021/365. Garantie fonctionnelle.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-laptop service-icon"></i>
+                <h3>Vente Ordinateurs & Matériel</h3>
+                <p>PC portables, fixes, imprimantes, scanners, unités centrales, écrans, claviers, souris, disques durs HDD/SSD, cartouches, clés USB.</p>
+                <div class="list-badge"><span class="badge-item">Promo SSD</span><span class="badge-item">PC reconditionné</span></div>
+            </div>
+        </div>
+        <!-- Complément antenne / surveillance -->
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-satellite service-icon"></i>
+                <h3>Installation antenne parabolique</h3>
+                <p>Montage, orientation, récepteur, multi-TV. Solution pour zones rurales et urbaines.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h3>Caméra de surveillance HD</h3>
+                <p>Installation complète : caméra extérieure/intérieure, vision à distance, détection mouvement.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-microchip service-icon"></i>
+                <h3>Réparation clés USB / SD</h3>
+                <p>Récupération de données, réparation contrôleur, formatage bas niveau.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact + coordonnées -->
+    <div id="contact" class="section">
+        <div class="contact-block">
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3><i class="fas fa-address-card"></i> Contactez STECH SOLUTION</h3>
+                    <p>Technicien à votre écoute pour toute intervention : dépannage informatique, installation réseau, antenne ou sécurité. Déplacements rapides.</p>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone-alt"></i>
+                        <div><strong>Téléphone principal</strong><br><a href="tel:+22893778173" style="color:#0ff; text-decoration:none;">+228 93 77 81 73</a> / <a href="tel:+22879636443" style="color:#0ff;">+228 79 63 64 43</a></div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div><strong>E-mail</strong><br><a href="mailto:stechinfo25@gmail.com" style="color:#0ff;">stechinfo25@gmail.com</a></div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fab fa-whatsapp"></i>
+                        <div><strong>WhatsApp Business</strong><br>+228 79 63 64 43 (Réponse rapide)</div>
+                    </div>
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <a href="https://wa.me/22893778173?text=Bonjour%20STECH%20SOLUTION%2C%20j%27ai%20besoin%20d%27un%20service%20informatique." class="btn-primary" target="_blank"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a>
+                        <a href="mailto:stechinfo25@gmail.com" class="btn-outline"><i class="far fa-envelope"></i> Envoyer un mail</a>
+                    </div>
+                </div>
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2rem; color:#0ff;"></i>
+                    <h4>Intervention sur tout le Togo</h4>
+                    <p>Lomé et ses environs, déplacement rapide. Devis gratuit.</p>
+                    <div style="margin-top: 20px; background:#0a142e; border-radius: 30px; padding: 15px;">
+                        <i class="far fa-clock"></i> Lundi - Samedi : 8h - 19h<br>
+                        <i class="fas fa-tools"></i> Service d'urgence disponible
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
+        <div class="logo-icon" style="width: 45px; height: 45px;"><i class="fas fa-microchip"></i></div>
+        <div class="logo-text"><h1 style="font-size:1.2rem;">STECH SOLUTION</h1></div>
+    </div>
+    <p>© 2025 STECH SOLUTION - Technicien agréé en maintenance informatique, réseaux, téléphonie, antenne parabolique et sécurité électronique.</p>
+    <p><i class="fas fa-certificate"></i> Installation Windows, Office, activation, vente matériel, réparation USB et cartes mémoires, PC, téléphone Android.</p>
+    <div style="margin-top: 12px;">
+        <a href="tel:+22893778173" style="color:#8bb9ff; margin:0 10px;">Appel +228 93 77 81 73</a> | 
+        <a href="mailto:stechinfo25@gmail.com" style="color:#8bb9ff;">stechinfo25@gmail.com</a>
+    </div>
+</footer>
+
+<!-- Bouton flottant WhatsApp -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/22893778173?text=Bonjour%20STECH%20SOLUTION%20je%20souhaite%20obtenir%20un%20service%20(ordinateur%2Freseaux%2Fantenne%20...)" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+<!-- petit script pour le smooth scroll -->
+<script>
+    document.querySelectorAll('.nav-links a, .btn-primary[href^="#"], .btn-outline[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId && targetId !== "#" && targetId.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+    // ajout dynamique pour le bouton devis
+    const devisBtn = document.querySelector('.btn-primary[href="#contact"]');
+    if(devisBtn) {
+        devisBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+</script>
+</body>
+</html>
+```
